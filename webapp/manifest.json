@@ -1,0 +1,162 @@
+{
+  "_version": "1.73.1",
+  "sap.app": {
+    "id": "zmesconfsingle.zmesconfsingle",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "Darabos gyártási rendelés lejelentés",
+    "description": "Darabos gyártási rendelés lejelentés",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:feop",
+      "version": "1.28.0",
+      "toolsId": "7b1049d1-1dad-431e-961e-ba55660f3cbc"
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "zmesconfsingle-display": {
+          "semanticObject": "zmesconfsingle",
+          "action": "manage",
+          "title": "Darabos gyártás lejelentés",
+          "subTitle": "Darabos gyártás lejelentés",
+          "signature": {
+            "parameters": {
+              "ManufacturingOrder": {
+                "required": true
+              },
+              "ManufacturingOrderOperation": {
+                "required": true
+              }
+            },
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    },
+    "dataSources": {
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      },
+      "mainService": {
+        "uri": "/sap/opu/odata4/sap/zui_mess_pp_setup_v4/srvd/sap/zui_mes_pp_setup/0001/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "annotation"
+          ],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.136.10",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "zmesconfsingle.zmesconfsingle.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": "Operation({key}):?query:",
+          "name": "OperationObjectPage",
+          "target": "OperationObjectPage"
+        }
+      ],
+      "targets": {
+        "OperationObjectPage": {
+          "type": "Component",
+          "id": "OperationObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Operation",
+              "content": {
+                "header": {
+                  "visible": true,
+                  "anchorBarVisible": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ObjectPage.ObjectPageController#zmesconfsingle.zmesconfsingle::OperationObjectPage": {
+            "controllerName": "zmesconfsingle.zmesconfsingle.ext.controller.ObjectPageExt"
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  },
+  "sap.fe": {
+    "app": {
+      "enableLazyLoading": true
+    }
+  }
+}

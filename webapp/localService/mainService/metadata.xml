@@ -1,0 +1,1366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="SAP__aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="SAP__capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="SAP__common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CORE',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Core.V1" Alias="SAP__core"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_HIERARCHY',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Hierarchy.v1" Alias="SAP__hierarchy"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_HTML5',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.HTML5.v1" Alias="SAP__HTML5"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="SAP__measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ODM',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.ODM.v1" Alias="SAP__ODM"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PDF',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.PDF.v1" Alias="SAP__PDF"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_SESSION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Session.v1" Alias="SAP__session"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="SAP__UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="SAP__validation"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="com.sap.gateway.srvd.zui_mes_pp_setup.v0001" Alias="SAP__self">
+            <Annotation Term="SAP__core.SchemaVersion" String="1.0.0"/>
+            <EntityType Name="AppNavType">
+                <Key>
+                    <PropertyRef Name="AppId"/>
+                    <PropertyRef Name="SeqNr"/>
+                </Key>
+                <Property Name="AppId" Type="Edm.String" Nullable="false" MaxLength="30"/>
+                <Property Name="SeqNr" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="ToSemObj" Type="Edm.String" Nullable="false" MaxLength="30"/>
+                <Property Name="ToSemAction" Type="Edm.String" Nullable="false" MaxLength="60"/>
+            </EntityType>
+            <EntityType Name="ComponentType">
+                <Key>
+                    <PropertyRef Name="ManufacturingOrder"/>
+                    <PropertyRef Name="ManufacturingOrderSequence"/>
+                    <PropertyRef Name="ManufacturingOrderOperation"/>
+                    <PropertyRef Name="Reservation"/>
+                    <PropertyRef Name="ReservationItem"/>
+                    <PropertyRef Name="ReservationRecordType"/>
+                </Key>
+                <Property Name="ManufacturingOrder" Type="Edm.String" Nullable="false" MaxLength="12"/>
+                <Property Name="ManufacturingOrderSequence" Type="Edm.String" Nullable="false" MaxLength="6"/>
+                <Property Name="ManufacturingOrderOperation" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="Reservation" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="ReservationItem" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="ReservationRecordType" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="CompId" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="18"/>
+                <Property Name="MatlCompRequirementDate" Type="Edm.Date"/>
+                <Property Name="BaseUnit" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="RequiredQuantity" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3"/>
+                <Property Name="WithdrawnQuantity" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3"/>
+                <Property Name="StorageLocation" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="Batch" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="ReservationIsFinallyIssued" Type="Edm.Boolean" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="ConfirmationType">
+                <Key>
+                    <PropertyRef Name="ProductionOrder"/>
+                    <PropertyRef Name="ProductionOrderOperation"/>
+                    <PropertyRef Name="OrderConfirmationGroup"/>
+                    <PropertyRef Name="OrderConfirmation"/>
+                </Key>
+                <Property Name="ProductionOrder" Type="Edm.String" Nullable="false" MaxLength="12"/>
+                <Property Name="ProductionOrderOperation" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="OrderConfirmationGroup" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OrderConfirmation" Type="Edm.String" Nullable="false" MaxLength="8"/>
+                <Property Name="ConfirmationOption" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="PostingDate" Type="Edm.Date"/>
+                <Property Name="ConfirmedExecutionEndDate" Type="Edm.Date"/>
+                <Property Name="ConfirmedExecutionEndTime" Type="Edm.TimeOfDay" Nullable="false"/>
+                <Property Name="ConfirmationYieldQuantity" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3"/>
+                <Property Name="ConfirmationScrapQuantity" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3"/>
+                <Property Name="ConfirmationUnit" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="ConfirmationText" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="EnteredByUser" Type="Edm.String" Nullable="false" MaxLength="12"/>
+            </EntityType>
+            <EntityType Name="OperationType">
+                <Key>
+                    <PropertyRef Name="ManufacturingOrder"/>
+                    <PropertyRef Name="ManufacturingOrderSequence"/>
+                    <PropertyRef Name="ManufacturingOrderOperation"/>
+                    <PropertyRef Name="RelevantWorkCenterID"/>
+                </Key>
+                <Property Name="ManufacturingOrder" Type="Edm.String" Nullable="false" MaxLength="12"/>
+                <Property Name="ManufacturingOrderSequence" Type="Edm.String" Nullable="false" MaxLength="6"/>
+                <Property Name="ManufacturingOrderOperation" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="RelevantWorkCenterID" Type="Edm.String" Nullable="false" MaxLength="8"/>
+                <Property Name="MfgOrderInternalID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OrderOperationInternalID" Type="Edm.String" Nullable="false" MaxLength="8"/>
+                <Property Name="ManufacturingOrderType" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="SessionUserName" Type="Edm.String" Nullable="false" MaxLength="12"/>
+                <Property Name="UserFullName" Type="Edm.String" Nullable="false" MaxLength="80"/>
+                <Property Name="SessionPersNumber" Type="Edm.String" Nullable="false" MaxLength="8"/>
+                <Property Name="SessionEmpFullName" Type="Edm.String" Nullable="false" MaxLength="100"/>
+                <Property Name="SessionWorkCenterId" Type="Edm.String" Nullable="false" MaxLength="8"/>
+                <Property Name="WorkCenterText" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="SessionStartDateTime" Type="Edm.DateTimeOffset"/>
+                <Property Name="WorkStart" Type="Edm.DateTimeOffset"/>
+                <Property Name="WorkEnd" Type="Edm.DateTimeOffset"/>
+                <Property Name="ProductDescription" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="18"/>
+                <Property Name="OperationDescription" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="OperationControlProfile" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="WorkCenterInternalID" Type="Edm.String" Nullable="false" MaxLength="8"/>
+                <Property Name="WorkCenterTypeCode" Type="Edm.String" Nullable="false" MaxLength="2"/>
+                <Property Name="RelevantWorkCenterCode" Type="Edm.String" Nullable="false" MaxLength="8"/>
+                <Property Name="WorkCenterID" Type="Edm.String" Nullable="false" MaxLength="8"/>
+                <Property Name="SourceType" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="RelevantWorkCenterType" Type="Edm.String" Nullable="false" MaxLength="2"/>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="ObjectInternalID" Type="Edm.String" Nullable="false" MaxLength="22"/>
+                <Property Name="OperationIsMilestone" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="OperationIsReleased" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="OperationIsPartiallyConfirmed" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="OperationIsConfirmed" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="UserStatusShortText" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="UserStatusText" Type="Edm.String" Nullable="false" MaxLength="30"/>
+                <Property Name="OperationUnit" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="OperationQuantity" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3"/>
+                <Property Name="ConfirmedYieldQty" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3"/>
+                <Property Name="ConfirmedScrapQty" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3"/>
+                <Property Name="WorkCenterStandardWorkQtyUnit1" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="WorkCenterStandardWorkQty1" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="3"/>
+                <Property Name="WorkCenterStandardWorkQtyUnit2" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="WorkCenterStandardWorkQty2" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="3"/>
+                <Property Name="WorkCenterStandardWorkQtyUnit3" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="WorkCenterStandardWorkQty3" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="3"/>
+                <Property Name="ErlstSchedldExecStrtTstmp" Type="Edm.DateTimeOffset"/>
+                <Property Name="ErlstSchedldExecEndTstmp" Type="Edm.DateTimeOffset"/>
+                <Property Name="SchedldDurationSeconds" Type="Edm.Decimal" Nullable="false" Precision="15"/>
+                <Property Name="ActualExecutionStartTstmp" Type="Edm.DateTimeOffset"/>
+                <Property Name="ActualExecutionEndTstmp" Type="Edm.DateTimeOffset"/>
+                <Property Name="ActualDurationSeconds" Type="Edm.Decimal" Nullable="false" Precision="15"/>
+                <Property Name="OrderOperationBarcode" Type="Edm.String" Nullable="false" MaxLength="24"/>
+                <Property Name="__OperationControl" Type="com.sap.gateway.srvd.zui_mes_pp_setup.v0001.OperationOperationControl"/>
+                <Property Name="SAP__Messages" Type="Collection(com.sap.gateway.srvd.zui_mes_pp_setup.v0001.SAP__Message)" Nullable="false"/>
+                <NavigationProperty Name="_AppNav" Type="Collection(com.sap.gateway.srvd.zui_mes_pp_setup.v0001.AppNavType)"/>
+                <NavigationProperty Name="_Components" Type="Collection(com.sap.gateway.srvd.zui_mes_pp_setup.v0001.ComponentType)"/>
+                <NavigationProperty Name="_Confirmations" Type="Collection(com.sap.gateway.srvd.zui_mes_pp_setup.v0001.ConfirmationType)"/>
+            </EntityType>
+            <ComplexType Name="OperationOperationControl">
+                <Property Name="finishSetup" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="finishSetupApprove" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="startSetup" Type="Edm.Boolean" Nullable="false"/>
+            </ComplexType>
+            <ComplexType Name="SAP__Message">
+                <Property Name="code" Type="Edm.String" Nullable="false"/>
+                <Property Name="message" Type="Edm.String" Nullable="false"/>
+                <Property Name="target" Type="Edm.String"/>
+                <Property Name="additionalTargets" Type="Collection(Edm.String)" Nullable="false"/>
+                <Property Name="transition" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="numericSeverity" Type="Edm.Byte" Nullable="false"/>
+                <Property Name="longtextUrl" Type="Edm.String"/>
+            </ComplexType>
+            <Action Name="finishSetupApprove" IsBound="true">
+                <Parameter Name="_it" Type="com.sap.gateway.srvd.zui_mes_pp_setup.v0001.OperationType" Nullable="false"/>
+                <Parameter Name="SupervisorBadgeId" Type="Edm.String" Nullable="false" MaxLength="30"/>
+                <Parameter Name="ScrapQuantity" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3"/>
+                <Parameter Name="ScrapUnit" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Parameter Name="ScrapReason" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Parameter Name="ScrapText" Type="Edm.String" Nullable="false" MaxLength="40"/>
+            </Action>
+            <Action Name="finishSetup" IsBound="true">
+                <Parameter Name="_it" Type="com.sap.gateway.srvd.zui_mes_pp_setup.v0001.OperationType" Nullable="false"/>
+                <Parameter Name="ScrapQuantity" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3"/>
+                <Parameter Name="ScrapUnit" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Parameter Name="ScrapReason" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Parameter Name="ScrapText" Type="Edm.String" Nullable="false" MaxLength="40"/>
+            </Action>
+            <Action Name="startSetup" IsBound="true">
+                <Parameter Name="_it" Type="com.sap.gateway.srvd.zui_mes_pp_setup.v0001.OperationType" Nullable="false"/>
+            </Action>
+            <EntityContainer Name="Container">
+                <EntitySet Name="AppNav" EntityType="com.sap.gateway.srvd.zui_mes_pp_setup.v0001.AppNavType"/>
+                <EntitySet Name="Component" EntityType="com.sap.gateway.srvd.zui_mes_pp_setup.v0001.ComponentType"/>
+                <EntitySet Name="Confirmation" EntityType="com.sap.gateway.srvd.zui_mes_pp_setup.v0001.ConfirmationType"/>
+                <EntitySet Name="Operation" EntityType="com.sap.gateway.srvd.zui_mes_pp_setup.v0001.OperationType">
+                    <NavigationPropertyBinding Path="_AppNav" Target="AppNav"/>
+                    <NavigationPropertyBinding Path="_Components" Target="Component"/>
+                    <NavigationPropertyBinding Path="_Confirmations" Target="Confirmation"/>
+                </EntitySet>
+            </EntityContainer>
+            <Annotations Target="SAP__self.AppNavType/AppId">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.AppNavType/SeqNr">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+                <Annotation Term="SAP__common.Label" String="Infotype record no."/>
+                <Annotation Term="SAP__common.Heading" String="RNo"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Number of Infotype Record With Same Key"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=SEQNR"/>
+            </Annotations>
+            <Annotations Target="SAP__self.AppNavType">
+                <Annotation Term="SAP__common.Label" String="MES App Navigáció"/>
+                <Annotation Term="SAP__UI.LineItem">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Label" String="Alkalmazás"/>
+                            <PropertyValue Property="Value" Path="Title"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/AppNav">
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.ComponentType/ManufacturingOrder">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.ValueListReferences">
+                    <Collection>
+                        <String>../../../../srvd_f4/sap/i_mfgorderstdvh/0001;ps='srvd-zui_mes_pp_setup-0001';va='com.sap.gateway.srvd.zui_mes_pp_setup.v0001.et-zi_mes_pp_component.manufacturingorder'/$metadata</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__common.Label" String="Manufacturing Order"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Manufacturing Order ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ComponentType/ManufacturingOrderSequence">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.ValueListReferences">
+                    <Collection>
+                        <String>../../../../srvd_f4/sap/i_mfgordersequencestdvh/0001;ps='srvd-zui_mes_pp_setup-0001';va='com.sap.gateway.srvd.zui_mes_pp_setup.v0001.et-zi_mes_pp_component.manufacturingordersequence'/$metadata</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__common.Label" String="Sequence"/>
+                <Annotation Term="SAP__common.Heading" String="Seq."/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=PLNFOLGE"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ComponentType/ManufacturingOrderOperation">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.ValueListReferences">
+                    <Collection>
+                        <String>../../../../srvd_f4/sap/i_mfgordopbysemantickeystdvh/0001;ps='srvd-zui_mes_pp_setup-0001';va='com.sap.gateway.srvd.zui_mes_pp_setup.v0001.et-zi_mes_pp_component.manufacturingorderoperation'/$metadata</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__common.Label" String="Operation or Phase"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Operation or Phase Number"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ComponentType/Reservation">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Reservation"/>
+                <Annotation Term="SAP__common.Heading" String="Reserv.no."/>
+                <Annotation Term="SAP__common.QuickInfo" String="Number of reservation/dependent requirements"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=RSNUM"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ComponentType/ReservationItem">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Reservation Item"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ComponentType/ReservationRecordType">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Reservation Record Type"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ComponentType/Material">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.ValueListReferences">
+                    <Collection>
+                        <String>../../../../srvd_f4/sap/i_productstdvh/0001;ps='srvd-zui_mes_pp_setup-0001';va='com.sap.gateway.srvd.zui_mes_pp_setup.v0001.et-zi_mes_pp_component.material'/$metadata</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__common.Label" String="Material"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Material Number"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=MATNR"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ComponentType/BaseUnit">
+                <Annotation Term="SAP__common.IsUnit"/>
+                <Annotation Term="SAP__common.Label" String="Base Unit of Measure"/>
+                <Annotation Term="SAP__common.Heading" String="BUn"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=MEINS"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ComponentType/RequiredQuantity">
+                <Annotation Term="SAP__measures.Unit" Path="BaseUnit"/>
+                <Annotation Term="SAP__common.Label" String="Requirement Quantity"/>
+                <Annotation Term="SAP__common.Heading" String="Reqmnt qty"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=BDMNG"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ComponentType/WithdrawnQuantity">
+                <Annotation Term="SAP__measures.Unit" Path="BaseUnit"/>
+                <Annotation Term="SAP__common.Label" String="Withdrawn Quantity"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ComponentType/StorageLocation">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Storage Location"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ComponentType/Batch">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.ValueListReferences">
+                    <Collection>
+                        <String>../../../../srvd_f4/sap/i_batchstdvh/0001;ps='srvd-zui_mes_pp_setup-0001';va='com.sap.gateway.srvd.zui_mes_pp_setup.v0001.et-zi_mes_pp_component.batch'/$metadata</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__common.Label" String="Batch"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Batch Number"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=CHARG_D"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ComponentType">
+                <Annotation Term="SAP__common.Label" String="MES PP Komponens"/>
+                <Annotation Term="SAP__UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Komponens"/>
+                        <PropertyValue Property="TypeNamePlural" String="Komponensek"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.LineItem">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="CompId"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Material"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="MatlCompRequirementDate"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="RequiredQuantity"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="WithdrawnQuantity"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="StorageLocation"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Batch"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ReservationIsFinallyIssued"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/Component">
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="RequiredQuantity"/>
+                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="WithdrawnQuantity"/>
+                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.Container">
+                <Annotation Term="SAP__CodeList.UnitsOfMeasure">
+                    <Record>
+                        <PropertyValue Property="Url" String="../../../../default/iwbep/common/0001/$metadata"/>
+                        <PropertyValue Property="CollectionPath" String="UnitsOfMeasure"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                <Annotation Term="SAP__capabilities.FilterFunctions">
+                    <Collection>
+                        <String>eq</String>
+                        <String>ne</String>
+                        <String>gt</String>
+                        <String>ge</String>
+                        <String>lt</String>
+                        <String>le</String>
+                        <String>and</String>
+                        <String>or</String>
+                        <String>contains</String>
+                        <String>startswith</String>
+                        <String>endswith</String>
+                        <String>any</String>
+                        <String>all</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SupportedFormats">
+                    <Collection>
+                        <String>application/json</String>
+                        <String>application/pdf</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__PDF.Features">
+                    <Record>
+                        <PropertyValue Property="DocumentDescriptionReference" String="../../../../default/iwbep/common/0001/$metadata"/>
+                        <PropertyValue Property="DocumentDescriptionCollection" String="MyDocumentDescriptions"/>
+                        <PropertyValue Property="ArchiveFormat" Bool="true"/>
+                        <PropertyValue Property="Border" Bool="true"/>
+                        <PropertyValue Property="CoverPage" Bool="true"/>
+                        <PropertyValue Property="FitToPage" Bool="true"/>
+                        <PropertyValue Property="FontName" Bool="true"/>
+                        <PropertyValue Property="FontSize" Bool="true"/>
+                        <PropertyValue Property="HeaderFooter" Bool="true"/>
+                        <PropertyValue Property="IANATimezoneFormat" Bool="true"/>
+                        <PropertyValue Property="Margin" Bool="true"/>
+                        <PropertyValue Property="Padding" Bool="true"/>
+                        <PropertyValue Property="ResultSizeDefault" Int="20000"/>
+                        <PropertyValue Property="ResultSizeMaximum" Int="20000"/>
+                        <PropertyValue Property="Signature" Bool="true"/>
+                        <PropertyValue Property="TextDirectionLayout" Bool="true"/>
+                        <PropertyValue Property="Treeview" Bool="true"/>
+                        <PropertyValue Property="UploadToFileShare" Bool="true"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.KeyAsSegmentSupported"/>
+                <Annotation Term="SAP__capabilities.AsynchronousRequestsSupported"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ConfirmationType/ProductionOrder">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Production Order"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ConfirmationType/ProductionOrderOperation">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Production Order Operation"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ConfirmationType/OrderConfirmationGroup">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Confirmation Group"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Collective ID of Order Confirmations"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ConfirmationType/OrderConfirmation">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Production Order Confirmation"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ConfirmationType/ConfirmationYieldQuantity">
+                <Annotation Term="SAP__measures.Unit" Path="ConfirmationUnit"/>
+                <Annotation Term="SAP__common.Label" String="Yield Quantity"/>
+                <Annotation Term="SAP__common.Heading" String="Yield"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Yield to be Confirmed"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=RU_LMNGA"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ConfirmationType/ConfirmationScrapQuantity">
+                <Annotation Term="SAP__measures.Unit" Path="ConfirmationUnit"/>
+                <Annotation Term="SAP__common.Label" String="Scrap Quantity"/>
+                <Annotation Term="SAP__common.Heading" String="Scrap Qty"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Scrap to Be Confirmed"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=RU_XMNGA"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ConfirmationType/ConfirmationUnit">
+                <Annotation Term="SAP__common.IsUnit"/>
+                <Annotation Term="SAP__common.Label" String="Confirmation Unit"/>
+                <Annotation Term="SAP__common.Heading" String="Un"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Confirmation Unit of Measure"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=RU_VORME"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ConfirmationType/EnteredByUser">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Entered by User"/>
+                <Annotation Term="SAP__common.Heading" String="Entered by"/>
+                <Annotation Term="SAP__common.QuickInfo" String="User who Entered the Confirmation"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ConfirmationType">
+                <Annotation Term="SAP__common.Label" String="MES PP Visszajelentés lista"/>
+                <Annotation Term="SAP__UI.LineItem">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ProductionOrder"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ProductionOrderOperation"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ConfirmationOption"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="PostingDate"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ConfirmationYieldQuantity"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ConfirmationScrapQuantity"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ConfirmationText"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="EnteredByUser"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/Confirmation">
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="ConfirmationYieldQuantity"/>
+                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="ConfirmationScrapQuantity"/>
+                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/ManufacturingOrder">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Manufacturing Order"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Manufacturing Order ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/ManufacturingOrderSequence">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Sequence"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Manufacturing Order Sequence"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/ManufacturingOrderOperation">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Operation or Phase"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Operation or Phase Number"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/RelevantWorkCenterID">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Work Center Internal"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Work Center Internal ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/MfgOrderInternalID">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Order Internal ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/OrderOperationInternalID">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Operation Internal ID"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Internal Identifier of an Operation or Activity"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/ManufacturingOrderType">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Order Type"/>
+                <Annotation Term="SAP__common.Heading" String="Type"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=AUFART"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/SessionUserName">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="User"/>
+                <Annotation Term="SAP__common.Heading" String="User Name"/>
+                <Annotation Term="SAP__common.QuickInfo" String="User Name in User Master Record"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=XUBNAME"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/UserFullName">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.Label" String="Full Name"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Full Name of Person"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=AD_NAMTEXT"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/SessionPersNumber">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Personnel Number"/>
+                <Annotation Term="SAP__common.Heading" String="Pers.No."/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=PERSNO"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/SessionWorkCenterId">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Work Center"/>
+                <Annotation Term="SAP__common.Heading" String="Work Ctr"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=ARBPL"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/WorkCenterText">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__common.Label" String="Description"/>
+                <Annotation Term="SAP__common.Heading" String="Short description"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Short description"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=CR_KTEXT"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/SessionStartDateTime">
+                <Annotation Term="SAP__common.Label" String="Bejelentkezés"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/WorkStart">
+                <Annotation Term="SAP__common.Label" String="Munkaidő kezdete"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/WorkEnd">
+                <Annotation Term="SAP__common.Label" String="Munkaidő vége"/>
+                <Annotation Term="SAP__core.Computed"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/ProductDescription">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+                <Annotation Term="SAP__common.Label" String="Product Description"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=PRODUCTDESCRIPTION"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/Material">
+                <Annotation Term="SAP__common.Text" Path="ProductDescription"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Material"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Material Number for Order"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=CO_MATNR"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/OperationControlProfile">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Control Profile"/>
+                <Annotation Term="SAP__common.Heading" String="Ctrl Prfl."/>
+                <Annotation Term="SAP__common.QuickInfo" String="Operation Control Profile"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/WorkCenterInternalID">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Work Center Internal"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Work Center Internal ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/WorkCenterTypeCode">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Work Center Type"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/RelevantWorkCenterCode">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+                <Annotation Term="SAP__common.Label" String="Work Center"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/WorkCenterID">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Work Center"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/RelevantWorkCenterType">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+                <Annotation Term="SAP__common.Label" String="Work Center Type"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/Plant">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Plant"/>
+                <Annotation Term="SAP__common.Heading" String="Plnt"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=WERKS_D"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/ObjectInternalID">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+                <Annotation Term="SAP__common.Label" String="Object Number"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Object Internal ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/OperationIsReleased">
+                <Annotation Term="SAP__common.Label" String="ENGD"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/OperationIsPartiallyConfirmed">
+                <Annotation Term="SAP__common.Label" String="RVJL"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/OperationIsConfirmed">
+                <Annotation Term="SAP__common.Label" String="VJEL"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/UserStatusShortText">
+                <Annotation Term="SAP__common.Label" String="FelhStátusz"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/UserStatusText">
+                <Annotation Term="SAP__common.Label" String="FelhStátusz"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/OperationUnit">
+                <Annotation Term="SAP__common.IsUnit"/>
+                <Annotation Term="SAP__common.Label" String="Operation Unit"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Operation Unit of Measure"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/OperationQuantity">
+                <Annotation Term="SAP__measures.Unit" Path="OperationUnit"/>
+                <Annotation Term="SAP__common.Label" String="Operation Quantity"/>
+                <Annotation Term="SAP__common.Heading" String="Operation Qty"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Operation Total Quantity"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=MGVRG"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/ConfirmedYieldQty">
+                <Annotation Term="SAP__measures.Unit" Path="OperationUnit"/>
+                <Annotation Term="SAP__common.Label" String="Confirmed Yield"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Total Confirmed Yield"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=LMNGA"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/ConfirmedScrapQty">
+                <Annotation Term="SAP__measures.Unit" Path="OperationUnit"/>
+                <Annotation Term="SAP__common.Label" String="Confirmed Scrap"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Total Scrap Quantity Confirmed"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=XMNGA"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/WorkCenterStandardWorkQtyUnit1">
+                <Annotation Term="SAP__common.IsUnit"/>
+                <Annotation Term="SAP__common.Label" String="Work Quantity Unit 1"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Standard Work Quantity Unit 1"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/WorkCenterStandardWorkQty1">
+                <Annotation Term="SAP__common.Label" String="Előkészületi idő"/>
+                <Annotation Term="SAP__measures.Unit" Path="WorkCenterStandardWorkQtyUnit1"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Standard Work Quantity 1"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/WorkCenterStandardWorkQtyUnit2">
+                <Annotation Term="SAP__common.IsUnit"/>
+                <Annotation Term="SAP__common.Label" String="Work Quantity Unit 2"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Standard Work Quantity Unit 2"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/WorkCenterStandardWorkQty2">
+                <Annotation Term="SAP__common.Label" String="Gépi idő"/>
+                <Annotation Term="SAP__measures.Unit" Path="WorkCenterStandardWorkQtyUnit2"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Standard Work Quantity 2"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/WorkCenterStandardWorkQtyUnit3">
+                <Annotation Term="SAP__common.IsUnit"/>
+                <Annotation Term="SAP__common.Label" String="Work Quantity Unit 3"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Standard Work Quantity Unit 3"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/WorkCenterStandardWorkQty3">
+                <Annotation Term="SAP__common.Label" String="Személyi idő"/>
+                <Annotation Term="SAP__measures.Unit" Path="WorkCenterStandardWorkQtyUnit3"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Standard Work Quantity 3"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/ErlstSchedldExecStrtTstmp">
+                <Annotation Term="SAP__common.Label" String="Terv kezdés"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/ErlstSchedldExecEndTstmp">
+                <Annotation Term="SAP__common.Label" String="Terv befejezés"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/SchedldDurationSeconds">
+                <Annotation Term="SAP__common.Label" String="Terv időtartam (mp)"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/ActualExecutionStartTstmp">
+                <Annotation Term="SAP__common.Label" String="Tényl. kezdés"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/ActualExecutionEndTstmp">
+                <Annotation Term="SAP__common.Label" String="Tényl. befejezés"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/ActualDurationSeconds">
+                <Annotation Term="SAP__common.Label" String="Tényl. időtartam (mp)"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/__OperationControl">
+                <Annotation Term="SAP__core.Computed"/>
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/Operation">
+                <Annotation Term="SAP__capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="_AppNav"/>
+                                    <PropertyValue Property="InsertRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Insertable" Bool="false"/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="_Components"/>
+                                    <PropertyValue Property="InsertRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Insertable" Bool="false"/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="_Confirmations"/>
+                                    <PropertyValue Property="InsertRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Insertable" Bool="false"/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>__OperationControl</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>__OperationControl</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="NonUpdatableNavigationProperties">
+                            <Collection>
+                                <PropertyPath>_AppNav</PropertyPath>
+                                <PropertyPath>_Components</PropertyPath>
+                                <PropertyPath>_Confirmations</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.finishSetupApprove(SAP__self.OperationType)/SupervisorBadgeId">
+                <Annotation Term="SAP__common.Label" String="Supervisor kártya azonosító"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Heading" String="ID Number"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Identity Number"/>
+            </Annotations>
+            <Annotations Target="SAP__self.finishSetupApprove(SAP__self.OperationType)/ScrapQuantity">
+                <Annotation Term="SAP__measures.Unit" Path="ScrapUnit"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.finishSetupApprove(SAP__self.OperationType)/ScrapReason">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+                <Annotation Term="SAP__common.Label" String="Variance Reason"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Reason for Variance"/>
+            </Annotations>
+            <Annotations Target="SAP__self.finishSetupApprove(SAP__self.OperationType)">
+                <Annotation Term="SAP__core.OperationAvailable" Path="_it/__OperationControl/finishSetupApprove"/>
+            </Annotations>
+            <Annotations Target="SAP__self.finishSetup(SAP__self.OperationType)/ScrapQuantity">
+                <Annotation Term="SAP__common.Label" String="Selejt mennyiség"/>
+                <Annotation Term="SAP__measures.Unit" Path="ScrapUnit"/>
+                <Annotation Term="SAP__common.Heading" String="Scrap Qty"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Scrap to Be Confirmed"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=RU_XMNGA"/>
+            </Annotations>
+            <Annotations Target="SAP__self.finishSetup(SAP__self.OperationType)/ScrapUnit">
+                <Annotation Term="SAP__common.Label" String="Mértékegység"/>
+                <Annotation Term="SAP__UI.Hidden"/>
+                <Annotation Term="SAP__common.Heading" String="UM"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Unit of Measure for Display"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=MEINH"/>
+            </Annotations>
+            <Annotations Target="SAP__self.finishSetup(SAP__self.OperationType)/ScrapReason">
+                <Annotation Term="SAP__common.Label" String="Selejt oka"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Reason for Variance"/>
+            </Annotations>
+            <Annotations Target="SAP__self.finishSetup(SAP__self.OperationType)/ScrapText">
+                <Annotation Term="SAP__common.Label" String="Megjegyzés"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Confirmation Text"/>
+            </Annotations>
+            <Annotations Target="SAP__self.finishSetup(SAP__self.OperationType)">
+                <Annotation Term="SAP__core.OperationAvailable" Path="_it/__OperationControl/finishSetup"/>
+                <Annotation Term="SAP__common.SideEffects" Qualifier="SAP__Action_finishSetup">
+                    <Record Type="SAP__common.SideEffectsType">
+                        <PropertyValue Property="TargetEntities">
+                            <Collection>
+                                <NavigationPropertyPath/>
+                                <NavigationPropertyPath>_it/_Confirmations</NavigationPropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.startSetup(SAP__self.OperationType)">
+                <Annotation Term="SAP__core.OperationAvailable" Path="_it/__OperationControl/startSetup"/>
+                <Annotation Term="SAP__common.SideEffects" Qualifier="SAP__Action_startSetup">
+                    <Record Type="SAP__common.SideEffectsType">
+                        <PropertyValue Property="TargetEntities">
+                            <Collection>
+                                <NavigationPropertyPath/>
+                                <NavigationPropertyPath>_it/_Confirmations</NavigationPropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType">
+                <Annotation Term="SAP__common.Label" String="MES PP Ráállás"/>
+                <Annotation Term="SAP__UI.Facets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Applikációk"/>
+                            <PropertyValue Property="ID" String="AppNavigation"/>
+                            <PropertyValue Property="Target" AnnotationPath="_AppNav/@SAP__UI.LineItem"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Fejléc"/>
+                            <PropertyValue Property="ID" String="OpHeader"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#_OpHeader"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Művelet adatok"/>
+                            <PropertyValue Property="ID" String="OpDetails"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#_OpDetails"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Mennyiségek"/>
+                            <PropertyValue Property="ID" String="Quantities"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#_Quantities"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Dátumok"/>
+                            <PropertyValue Property="ID" String="Dates"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#_Dates"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Normaértékek"/>
+                            <PropertyValue Property="ID" String="StdValues"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#_StdValues"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Státuszok"/>
+                            <PropertyValue Property="ID" String="Status"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#_Status"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Komponensek"/>
+                            <PropertyValue Property="ID" String="Components"/>
+                            <PropertyValue Property="Target" AnnotationPath="_Components/@SAP__UI.LineItem"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Visszajelentések"/>
+                            <PropertyValue Property="ID" String="Confirmations"/>
+                            <PropertyValue Property="Target" AnnotationPath="_Confirmations/@SAP__UI.LineItem"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="ID" String="Header1"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#Header1"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="ID" String="Header2"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#Header2"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="ID" String="Header3"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#Header3"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="ID" String="Header4"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#Header4"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="Header1">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="SessionUserName"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="UserFullName"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="Header2">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="SessionPersNumber"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="SessionEmpFullName"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="Header3">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="SessionWorkCenterId"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="WorkCenterText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="Header4">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="SessionStartDateTime"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="WorkStart"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="WorkEnd"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="_Dates">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="ErlstSchedldExecStrtTstmp"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="ErlstSchedldExecEndTstmp"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="SchedldDurationSeconds"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="ActualExecutionStartTstmp"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="ActualExecutionEndTstmp"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="ActualDurationSeconds"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="_OpDetails">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="OperationDescription"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="OperationControlProfile"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="RelevantWorkCenterCode"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="WorkCenterID"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="Plant"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="_OpHeader">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="ManufacturingOrder"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="ManufacturingOrderOperation"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="ProductDescription"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="Material"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="_Quantities">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="OperationQuantity"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="ConfirmedYieldQty"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="ConfirmedScrapQty"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="_Status">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="OperationIsMilestone"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="OperationIsReleased"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="OperationIsPartiallyConfirmed"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="OperationIsConfirmed"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="UserStatusShortText"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="UserStatusText"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="_StdValues">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="WorkCenterStandardWorkQty1"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="WorkCenterStandardWorkQty2"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="WorkCenterStandardWorkQty3"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.Identification">
+                    <Collection>
+                        <Record Type="SAP__UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Ráállás elkezdése"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_mes_pp_setup.v0001.startSetup(com.sap.gateway.srvd.zui_mes_pp_setup.v0001.OperationType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/Isolated"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Ráállás befejezése"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_mes_pp_setup.v0001.finishSetup(com.sap.gateway.srvd.zui_mes_pp_setup.v0001.OperationType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/Isolated"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.LineItem">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ManufacturingOrder"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ManufacturingOrderOperation"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="OperationDescription"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Material"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>OrderOperationBarcode</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__common.Messages" Path="SAP__Messages"/>
+            </Annotations>
+            <Annotations Target="SAP__self.finishSetupApprove(SAP__self.OperationType)/ScrapUnit">
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.finishSetupApprove(SAP__self.OperationType)/ScrapText">
+                <Annotation Term="SAP__UI.Hidden"/>
+                <Annotation Term="SAP__common.Label" String="Confirmation Text"/>
+            </Annotations>
+            <Annotations Target="SAP__self.AppNavType/Title">
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="SAP__self.AppNavType/ToSemObj">
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.AppNavType/ToSemAction">
+                <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/_AppNav">
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ComponentType/CompId">
+                <Annotation Term="SAP__common.Label" String="Item Text"/>
+                <Annotation Term="SAP__common.Heading" String="Item Text Line 1"/>
+                <Annotation Term="SAP__common.QuickInfo" String="BOM Item Text (Line 1)"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=POTX1"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ComponentType/MatlCompRequirementDate">
+                <Annotation Term="SAP__common.Label" String="Requirement Date"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Material Component Requirement Date"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ComponentType/ReservationIsFinallyIssued">
+                <Annotation Term="SAP__common.Label" String="Final Issue"/>
+                <Annotation Term="SAP__common.Heading" String="FIs"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Final Issue for Reservation"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=KZEAR"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ConfirmationType/ConfirmationOption">
+                <Annotation Term="SAP__common.Label" String="Opció"/>
+                <Annotation Term="SAP__common.Heading" String="Visszajelentési opció"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Visszajelentési opció"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ConfirmationType/PostingDate">
+                <Annotation Term="SAP__common.Label" String="Posting Date"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ConfirmationType/ConfirmedExecutionEndDate">
+                <Annotation Term="SAP__common.Label" String="Confirmed Execution End Date"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Confirmed End Date of Execution"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ConfirmationType/ConfirmedExecutionEndTime">
+                <Annotation Term="SAP__common.Label" String="Confirmed Execution End Time"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Confirmed End Time of Execution"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ConfirmationType/ConfirmationText">
+                <Annotation Term="SAP__common.Label" String="Confirmation Text"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/OperationDescription">
+                <Annotation Term="SAP__common.Label" String="Operation Text"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Manufacturing Order Operation Text"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationType/OperationIsMilestone">
+                <Annotation Term="SAP__common.Label" String="Milestone Indicator"/>
+                <Annotation Term="SAP__common.Heading" String="Mst"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Indicator: Operation is a Milestone"/>
+                <Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=FLG_MST"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationOperationControl/finishSetup">
+                <Annotation Term="SAP__common.Label" String="Dyn. Action Control"/>
+                <Annotation Term="SAP__common.Heading" String="Dynamic Action Control"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Dynamic Action Property"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationOperationControl/finishSetupApprove">
+                <Annotation Term="SAP__common.Label" String="Dyn. Action Control"/>
+                <Annotation Term="SAP__common.Heading" String="Dynamic Action Control"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Dynamic Action Property"/>
+            </Annotations>
+            <Annotations Target="SAP__self.OperationOperationControl/startSetup">
+                <Annotation Term="SAP__common.Label" String="Dyn. Action Control"/>
+                <Annotation Term="SAP__common.Heading" String="Dynamic Action Control"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Dynamic Action Property"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

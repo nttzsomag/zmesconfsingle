@@ -1,0 +1,33 @@
+{
+  "generationParameters": {
+    "generationDate": "Wed Jul 15 2026 08:27:23 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "SAP Business Application Studio",
+    "serviceType": "SAP System (ABAP On-Premise)",
+    "metadataFilename": "",
+    "serviceUrl": "http://saphanadev.ad.sanatmetal.hu:44300/sap/opu/odata4/sap/zui_mess_pp_setup_v4/srvd/sap/zui_mes_pp_setup/0001/",
+    "appName": "zmesconfsingle",
+    "appTitle": "Gyártás lejelentés darabos",
+    "appDescription": "Gyártás lejelentés darabos",
+    "appNamespace": "zmesconfsingle",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.136.10",
+    "enableEslint": true,
+    "enableTypeScript": false,
+    "showMockDataInfo": true,
+    "generatorVersion": "1.28.0",
+    "template": "Form Entry Object Page V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Main Entity",
+        "value": "Operation"
+      },
+      {
+        "type": "Navigation Entity",
+        "value": "None"
+      }
+    ],
+    "launchText": "To launch the generated application, run the following from the generated application root folder:\n\n```\n    npm start\n```",
+    "valueHelpDownloaded": true
+  }
+}
