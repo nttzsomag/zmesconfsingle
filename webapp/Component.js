@@ -39,6 +39,13 @@ sap.ui.define(
                         }
                     });
                 }
+
+                // Vissza-nyíl explicit regisztrálása a shell fejlécében
+                this.getService("ShellUIService").then(function (oShellService) {
+                    oShellService.setBackNavigation(function () {
+                        sap.ushell.Container.getService("CrossApplicationNavigation").backToPreviousApp();
+                    });
+                });
             },
 
             /**
