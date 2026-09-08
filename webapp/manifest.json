@@ -54,6 +54,14 @@
           "localUri": "localService/mainService/metadata.xml",
           "odataVersion": "4.0"
         }
+      },
+      "gosService": {
+        "uri": "/sap/opu/odata4/sap/zui_gos_url_link_v4/srvd/sap/zui_gos_url_link/0001/",
+        "type": "OData",
+        "settings": {
+          "localUri": "localService/gosService/metadata.xml",
+          "odataVersion": "4.0"
+        }
       }
     }
   },
@@ -83,11 +91,11 @@
         "sap.fe.templates": {}
       }
     },
-      "services": {
-    "ShellUIService": {
-      "factoryName": "sap.ushell.ui5service.ShellUIService"
-    }
-  },
+    "services": {
+      "ShellUIService": {
+        "factoryName": "sap.ushell.ui5service.ShellUIService"
+      }
+    },
     "contentDensities": {
       "compact": true,
       "cozy": true
@@ -106,6 +114,13 @@
           "operationMode": "Server",
           "autoExpandSelect": true,
           "earlyRequests": true
+        }
+      },
+      "gosModel": {
+        "dataSource": "gosService",
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true
         }
       },
       "@i18n": {
@@ -137,7 +152,13 @@
               "content": {
                 "header": {
                   "visible": true,
-                  "anchorBarVisible": true
+                  "anchorBarVisible": true,
+                  "actions": {
+                    "showGosDocuments": {
+                      "text": "Dokumentumok",
+                      "requiresSelection": false
+                    }
+                  }
                 }
               }
             }
