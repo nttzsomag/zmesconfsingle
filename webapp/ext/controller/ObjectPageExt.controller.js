@@ -1,5 +1,6 @@
 sap.ui.define([
   "sap/ui/core/mvc/ControllerExtension",
+  "sap/m/MessageToast",
   "sap/m/Dialog",
   "sap/m/Table",
   "sap/m/Column",
@@ -8,7 +9,7 @@ sap.ui.define([
   "sap/m/Button",
   "sap/m/Text",
   "sap/ui/model/Filter"
-], function (ControllerExtension, Dialog, Table, Column, ColumnListItem, ObjectIdentifier, Button, Text, Filter) {
+], function (ControllerExtension, MessageToast, Dialog, Table, Column, ColumnListItem, ObjectIdentifier, Button, Text, Filter) {
   "use strict";
 
   return ControllerExtension.extend("zmesconfsingle.zmesconfsingle.ext.controller.ObjectPageExt", {
@@ -23,11 +24,13 @@ sap.ui.define([
           console.warn("Table not found:", sTableId);
         }
 
-        this._attachGosButtonPress();
+        this._attachHeaderButtonPress("Műszaki rajz", "sap-icon://attachment", this.onShowGosDocuments);
+        this._attachHeaderButtonPress("Karbantartási utasítás", "sap-icon://wrench", this.onShowMaintenanceInstruction);
       }
     },
 
-    _attachGosButtonPress: function () {
+    // ====== Fejléc-gomb megkeresése szöveg alapján, ikon + press bekötése ======
+    _attachHeaderButtonPress: function (sButtonText, sIcon, fnHandler) {
       var oView = this.getView();
       var oButton = null;
 
@@ -37,19 +40,71 @@ sap.ui.define([
           oElement.isA("sap.m.Button") &&
           oElement.getId().indexOf(oView.getId()) === 0 &&
           oElement.getText &&
-          oElement.getText() === "Dokumentumok"
+          oElement.getText() === sButtonText
         ) {
           oButton = oElement;
         }
       });
 
       if (oButton) {
-        oButton.setIcon("sap-icon://attachment");
-        oButton.attachPress(this.onShowGosDocuments.bind(this));
-        console.log("### DEBUG: Csatolt dokumentumok gomb megtalálva és bekötve:", oButton.getId());
+        oButton.setIcon(sIcon);
+        oButton.attachPress(fnHandler.bind(this));
+        console.log("### DEBUG: '" + sButtonText + "' gomb megtalálva és bekötve:", oButton.getId());
       } else {
-        console.warn("### DEBUG: Csatolt dokumentumok gomb NEM található onInit-ben");
+        console.warn("### DEBUG: '" + sButtonText + "' gomb NEM található onInit-ben");
       }
+    },
+
+    // ====== Közös GOS dokumentum-dialógus ======
+    _showGosDocumentsDialog: function (oSourceControl, aFilters, sDialogTitle) {
+      var oTable = new Table({
+        columns: [
+          new Column({ header: new Text({ text: "Leírás" }) }),
+          new Column({ header: new Text({ text: "Létrehozva" }) })
+        ]
+      });
+
+      oTable.bindItems({
+        path: "/GosUrlLink",
+        model: "gosModel",
+        filters: aFilters,
+        parameters: {
+          $select: "GuidId,Description,CreatedOn,Url"
+        },
+        template: new ColumnListItem({
+          type: "Active",
+          press: function (oEvent) {
+            var oCtx = oEvent.getSource().getBindingContext("gosModel");
+            var sUrl = oCtx.getProperty("Url");
+            window.open(sUrl, "_blank");
+          },
+          cells: [
+            new ObjectIdentifier({ title: "{gosModel>Description}" }),
+            new Text({ text: "{gosModel>CreatedOn}" })
+          ]
+        }),
+        events: {
+          dataReceived: function (oEvent) {
+            var oData = oEvent.getParameter("data");
+            var oErr = oEvent.getParameter("error");
+            console.log("[GOS dialog] dataReceived:", oData, "hiba:", oErr);
+          }
+        }
+      });
+
+      var oDialog = new Dialog({
+        title: sDialogTitle,
+        contentWidth: "30rem",
+        content: [oTable],
+        beginButton: new Button({
+          text: "Bezár",
+          press: function () { oDialog.close(); }
+        }),
+        afterClose: function () { oDialog.destroy(); }
+      });
+
+      oSourceControl.addDependent(oDialog);
+      oDialog.open();
     },
 
     _onRowPress: function (oEvent) {
@@ -76,6 +131,7 @@ sap.ui.define([
         });
     },
 
+    // ====== Csatolt dokumentumok - cikkhez kötve ======
     onShowGosDocuments: function () {
       var oView = this.getView();
       var oContext = oView.getBindingContext();
@@ -84,67 +140,56 @@ sap.ui.define([
         var sMaterial = aValues[0];
         var sProductDocumentNumber = aValues[1];
 
-        console.log("### DEBUG: onShowGosDocuments meghívva ###");
-        console.log(" -> Material érték:", sMaterial);
-        console.log(" -> ProductDocumentNumber érték:", sProductDocumentNumber);
+        this._showGosDocumentsDialog(oView, [
+          new Filter("BoObjType", "EQ", "BUS1001006"),
+          new Filter("BoObjKey", "EQ", sMaterial),
+          new Filter("DescriptionUpper", "EQ", sProductDocumentNumber)
+        ], "Műszaki rajz");
+      }.bind(this));
+    },
 
-        var oTable = new Table({
-          columns: [
-            new Column({ header: new Text({ text: "Leírás" }) }),
-            new Column({ header: new Text({ text: "Létrehozva" }) })
-          ]
-        });
+    // ====== Karbantartási utasítás - berendezéshez (EQUI) kötve ======
+    onShowMaintenanceInstruction: function () {
+      var oView = this.getView();
+      var oContext = oView.getBindingContext();
+      if (!oContext) {
+        console.warn("### DEBUG: onShowMaintenanceInstruction - nincs binding context");
+        return;
+      }
 
-        oTable.bindItems({
-          path: "/GosUrlLink",
-          model: "gosModel",
-          filters: [
-            new Filter("BoObjType", "EQ", "BUS1001006"),
-            new Filter("BoObjKey", "EQ", sMaterial),
-            new Filter("DescriptionUpper", "EQ", sProductDocumentNumber)
-          ],
-          parameters: {
-            $select: "GuidId,Description,CreatedOn,Url"
-          },
-          template: new ColumnListItem({
-            type: "Active",
-            press: function (oEvent) {
-              var oCtx = oEvent.getSource().getBindingContext("gosModel");
-              var sUrl = oCtx.getProperty("Url");
-              console.log(" -> sorra kattintva, URL:", sUrl);
-              window.open(sUrl, "_blank");
-            },
-            cells: [
-              new ObjectIdentifier({ title: "{gosModel>Description}" }),
-              new Text({ text: "{gosModel>CreatedOn}" })
-            ]
+      var oModel = oContext.getModel();
+      var oEquipmentBinding = oModel.bindList(oContext.getPath() + "/_Equipment", undefined, undefined, undefined, {
+        $select: "EquiEqunr"
+      });
+
+      oEquipmentBinding.requestContexts().then(function (aContexts) {
+        var aEquipmentIds = aContexts
+          .map(function (oCtx) {
+            var sVal = oCtx.getProperty("EquiEqunr");
+            return sVal ? ("000000000000000000" + sVal).slice(-18) : sVal;
+          })
+          .filter(Boolean);
+
+        console.log("### DEBUG: onShowMaintenanceInstruction - equipment ID-k:", aEquipmentIds);
+
+        if (!aEquipmentIds.length) {
+          MessageToast.show("Nincs berendezés rendelve ehhez a munkahelyhez.");
+          return;
+        }
+
+        var oEquipmentFilter = new Filter({
+          filters: aEquipmentIds.map(function (sEquipmentId) {
+            return new Filter("BoObjKey", "EQ", sEquipmentId);
           }),
-          events: {
-            dataReceived: function (oEvent) {
-              var oData = oEvent.getParameter("data");
-              var oErr = oEvent.getParameter("error");
-              if (oErr) {
-                console.error("### DEBUG: GosUrlLink hívás hiba ###", oErr);
-              } else {
-                console.log("### DEBUG: GosUrlLink válasz megérkezett ###", oData);
-              }
-            }
-          }
+          and: false
         });
 
-        var oDialog = new Dialog({
-          title: "Dokumentumok",
-          contentWidth: "30rem",
-          content: [oTable],
-          beginButton: new Button({
-            text: "Bezár",
-            press: function () { oDialog.close(); }
-          }),
-          afterClose: function () { oDialog.destroy(); }
-        });
-
-        oView.addDependent(oDialog);
-        oDialog.open();
+        this._showGosDocumentsDialog(oView, [
+          new Filter("BoObjType", "EQ", "EQUI"),
+          oEquipmentFilter
+        ], "Karbantartási utasítás");
+      }.bind(this)).catch(function (oError) {
+        console.log("### DEBUG: hiba a berendezések lekérésekor:", oError);
       });
     }
   });
