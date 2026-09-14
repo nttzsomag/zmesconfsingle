@@ -158,11 +158,6 @@
                       "text": "Műszaki rajz",
                       "icon": "sap-icon://attachment",
                       "requiresSelection": false
-                    },
-                    "showMaintenanceInstruction": {
-                      "text": "Karbantartási utasítás",
-                      "icon": "sap-icon://wrench",
-                      "requiresSelection": false
                     }
                   }
                 }

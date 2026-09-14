@@ -25,7 +25,6 @@ sap.ui.define([
         }
 
         this._attachHeaderButtonPress("Műszaki rajz", "sap-icon://attachment", this.onShowGosDocuments);
-        this._attachHeaderButtonPress("Karbantartási utasítás", "sap-icon://wrench", this.onShowMaintenanceInstruction);
       }
     },
 
@@ -146,51 +145,6 @@ sap.ui.define([
           new Filter("DescriptionUpper", "EQ", sProductDocumentNumber)
         ], "Műszaki rajz");
       }.bind(this));
-    },
-
-    // ====== Karbantartási utasítás - berendezéshez (EQUI) kötve ======
-    onShowMaintenanceInstruction: function () {
-      var oView = this.getView();
-      var oContext = oView.getBindingContext();
-      if (!oContext) {
-        console.warn("### DEBUG: onShowMaintenanceInstruction - nincs binding context");
-        return;
-      }
-
-      var oModel = oContext.getModel();
-      var oEquipmentBinding = oModel.bindList(oContext.getPath() + "/_Equipment", undefined, undefined, undefined, {
-        $select: "EquiEqunr"
-      });
-
-      oEquipmentBinding.requestContexts().then(function (aContexts) {
-        var aEquipmentIds = aContexts
-          .map(function (oCtx) {
-            var sVal = oCtx.getProperty("EquiEqunr");
-            return sVal ? ("000000000000000000" + sVal).slice(-18) : sVal;
-          })
-          .filter(Boolean);
-
-        console.log("### DEBUG: onShowMaintenanceInstruction - equipment ID-k:", aEquipmentIds);
-
-        if (!aEquipmentIds.length) {
-          MessageToast.show("Nincs berendezés rendelve ehhez a munkahelyhez.");
-          return;
-        }
-
-        var oEquipmentFilter = new Filter({
-          filters: aEquipmentIds.map(function (sEquipmentId) {
-            return new Filter("BoObjKey", "EQ", sEquipmentId);
-          }),
-          and: false
-        });
-
-        this._showGosDocumentsDialog(oView, [
-          new Filter("BoObjType", "EQ", "EQUI"),
-          oEquipmentFilter
-        ], "Karbantartási utasítás");
-      }.bind(this)).catch(function (oError) {
-        console.log("### DEBUG: hiba a berendezések lekérésekor:", oError);
-      });
     }
   });
 });
