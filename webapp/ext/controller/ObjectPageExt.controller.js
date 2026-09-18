@@ -25,6 +25,7 @@ sap.ui.define([
         }
 
         this._attachHeaderButtonPress("Műszaki rajz", "sap-icon://attachment", this.onShowGosDocuments);
+        this._attachHeaderButtonPress("Mérési eredmények rögzítése", "sap-icon://inspection", this.onNavigateToInspectionOperation);
       }
     },
 
@@ -145,6 +146,71 @@ sap.ui.define([
           new Filter("DescriptionUpper", "EQ", sProductDocumentNumber)
         ], "Műszaki rajz");
       }.bind(this));
+    },
+
+    // ====== Navigálás az Ellenőrzési művelet (ZMESInspectionOperation) appra ======
+    onNavigateToInspectionOperation: function () {
+      var oView = this.getView();
+      var oContext = oView.getBindingContext();
+
+      oContext.requestProperty(["ManufacturingOrder", "ManufacturingOrderOperation"])
+        .then(function (aValues) {
+          var sManufacturingOrder = aValues[0];
+          var sManufacturingOrderOperation = aValues[1];
+
+          return this._getInspectionKeys(sManufacturingOrder, sManufacturingOrderOperation);
+        }.bind(this))
+        .then(function (oKeys) {
+          if (!oKeys || !oKeys.InspectionLot || !oKeys.InspPlanOperationInternalID) {
+            MessageToast.show("Nem található ellenőrzési művelet ehhez a tételhez.");
+            return;
+          }
+
+          var sAppSpecificRoute = "&/InspectionOperations(InspectionLot='" + oKeys.InspectionLot
+            + "',InspPlanOperationInternalID='" + oKeys.InspPlanOperationInternalID
+            + "',IsActiveEntity=true)";
+
+          sap.ushell.Container.getService("CrossApplicationNavigation").toExternal({
+            target: {
+              semanticObject: "ZMESInspectionOperation",
+              action: "manageLineItems"
+            },
+            appSpecificRoute: sAppSpecificRoute
+          });
+        })
+        .catch(function (oError) {
+          console.error("[onNavigateToInspectionOperation] Hiba:", oError);
+          MessageToast.show("Hiba történt az ellenőrzési művelet keresése közben.");
+        });
+    },
+
+    // A zui_mes_insp_oper_v4 service /InspectionOperations entitáshalmazából olvas,
+    // ManufacturingOrder + ManufacturingOrderOperation alapján szűrve - ezek a mezők
+    // közvetlenül elérhetők a jelenlegi Operation entitáson (az OrderInternalBillOfOperations
+    // NEM property ezen az entitáson, ezért azzal nem lehet szűrni innen).
+    // A service metadata-ja alapján konfirmálva: InspectionLot és InspPlanOperationInternalID
+    // pontosan így hívják magukat ebben a service-ben is (nincs mezőnév-átalakítás).
+    // Draft-enabled entitás (van IsActiveEntity), ezért csak az aktív rekordra szűrünk.
+    _getInspectionKeys: function (sManufacturingOrder, sManufacturingOrderOperation) {
+      var oModel = this.getView().getModel("inspectionModel");
+      var oListBinding = oModel.bindList("/InspectionOperations", undefined, undefined, [
+        new Filter("ManufacturingOrder", "EQ", sManufacturingOrder),
+        new Filter("ManufacturingOrderOperation", "EQ", sManufacturingOrderOperation),
+        new Filter("IsActiveEntity", "EQ", true)
+      ], {
+        $select: "InspectionLot,InspPlanOperationInternalID"
+      });
+
+      return oListBinding.requestContexts(0, 1).then(function (aContexts) {
+        if (!aContexts.length) {
+          return null;
+        }
+        var oCtx = aContexts[0];
+        return {
+          InspectionLot: oCtx.getProperty("InspectionLot"),
+          InspPlanOperationInternalID: oCtx.getProperty("InspPlanOperationInternalID")
+        };
+      });
     }
   });
 });

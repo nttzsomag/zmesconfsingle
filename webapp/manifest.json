@@ -62,6 +62,14 @@
           "localUri": "localService/gosService/metadata.xml",
           "odataVersion": "4.0"
         }
+      },
+      "inspectionService": {
+        "uri": "/sap/opu/odata4/sap/zui_mes_insp_oper_v4/srvd/sap/zui_mes_insp_oper/0001/",
+        "type": "OData",
+        "settings": {
+          "localUri": "localService/inspectionService/metadata.xml",
+          "odataVersion": "4.0"
+        }
       }
     }
   },
@@ -123,6 +131,13 @@
           "autoExpandSelect": true
         }
       },
+      "inspectionModel": {
+        "dataSource": "inspectionService",
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true
+        }
+      },
       "@i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "uri": "i18n/i18n.properties"
@@ -157,6 +172,11 @@
                     "showGosDocuments": {
                       "text": "Műszaki rajz",
                       "icon": "sap-icon://attachment",
+                      "requiresSelection": false
+                    },
+                    "navigateToInspectionOperation": {
+                      "text": "Mérési eredmények rögzítése",
+                      "icon": "sap-icon://inspection",
                       "requiresSelection": false
                     }
                   }
